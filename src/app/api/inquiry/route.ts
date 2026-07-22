@@ -33,6 +33,17 @@ type Inquiry = {
 };
 
 export async function POST(request: Request) {
+  const contentType = request.headers.get("content-type") ?? "";
+  const contentLength = Number(request.headers.get("content-length") ?? "0");
+  const origin = request.headers.get("origin");
+  const allowedOrigins = new Set(["https://pak-labs.com", "https://www.pak-labs.com"]);
+
+  if (!contentType.includes("application/json") || contentLength > 12_000) {
+    return NextResponse.json({ ok: false, error: "Invalid request." }, { status: 415 });
+  }
+  if (origin && !allowedOrigins.has(origin) && !origin.startsWith("http://localhost:")) {
+    return NextResponse.json({ ok: false, error: "Invalid origin." }, { status: 403 });
+  }
   const body = await request.json().catch(() => null);
 
   // Honeypot: the hidden "company_website" field is only filled by bots.
@@ -44,7 +55,7 @@ export async function POST(request: Request) {
   const { name, email, company, topic, message } = body ?? {};
   if (
     typeof name !== "string" || !name.trim() ||
-    typeof email !== "string" || !email.includes("@") ||
+    typeof email !== "string" || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) ||
     typeof message !== "string" || !message.trim()
   ) {
     return NextResponse.json(
@@ -120,6 +131,5 @@ async function deliver(inquiry: Inquiry): Promise<void> {
   //   const { error } = await supabase.from("inquiries").insert(inquiry);
   //   if (error) throw error;
 
-  // --- Fallback: log only (no provider configured yet) ---------------------
-  console.log("[inquiry] no delivery provider configured — logging only:", inquiry);
+  throw new Error("No inquiry delivery provider is configured.");
 }
