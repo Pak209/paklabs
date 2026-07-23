@@ -8,15 +8,16 @@
 export const site = {
   name: "Pak Labs",
   url: "https://pak-labs.com",
-  tagline: "Building the future, one system at a time.",
+  tagline: "AI-native products, built to become useful systems.",
   description:
-    "AI-native apps. Automation systems. Creative tools. Web3 & game experiments. We build, test, learn, and ship.",
+    "A founder-led, AI-native product studio building interconnected software across personal intelligence, gaming, financial research, creative tools, and autonomous operations.",
 
   // Social / external profiles
   githubUser: "Pak209",
   githubUrl: "https://github.com/Pak209",
   // Shown in the footer; set to "" to hide the link.
   twitterUrl: "https://x.com/pak209eth",
+  linkedinUrl: "",
 
   // Contact email shown in the footer and used as the mailto fallback.
   // Swap for a branded address (e.g. hello@pak-labs.com) when you have one.
@@ -82,11 +83,10 @@ export const services = [
  * INQUIRY TOPICS — options in the form's "What are you looking for?" select.
  */
 export const inquiryTopics = [
-  "Freelance / contract work",
-  "AI automation project",
-  "App prototype / MVP",
-  "Custom tool or dashboard",
-  "Partnership / collaboration",
-  "Question about a project",
-  "Something else",
+  "Startup or cloud program",
+  "Technology partnership",
+  "Product collaboration",
+  "Press inquiry",
+  "General inquiry",
+  "Select consulting inquiry",
 ];

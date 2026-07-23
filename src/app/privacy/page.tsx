@@ -1,0 +1,4 @@
+import type { Metadata } from "next";
+import SiteShell from "@/components/SiteShell";
+export const metadata: Metadata = { title: "Privacy", alternates: { canonical: "/privacy" } };
+export default function PrivacyPage() { return <SiteShell><article className="legal-page shell"><h1>Privacy</h1><p>Pak Labs does not use invasive advertising trackers on this website. Information submitted through the contact form is used only to respond to the inquiry and is delivered through the configured contact provider.</p><h2>External services</h2><p>Links to GitHub, X, Holobots, and other external services are governed by their own privacy policies. Product-specific privacy information will be published with each product before public distribution requires it.</p><h2>Contact</h2><p>Questions can be sent to <a href="mailto:dankimoto8@gmail.com">dankimoto8@gmail.com</a>.</p><p className="legal-note">Last updated July 22, 2026.</p></article></SiteShell>; }

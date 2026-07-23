@@ -1,0 +1,5 @@
+import { ImageResponse } from "next/og";
+export const alt = "Pak Labs — AI-native products";
+export const size = { width: 1200, height: 630 };
+export const contentType = "image/png";
+export default function Image() { return new ImageResponse(<div style={{ width: "100%", height: "100%", display: "flex", flexDirection: "column", justifyContent: "space-between", background: "#05050d", color: "#f4f4fb", padding: "72px", fontFamily: "sans-serif" }}><div style={{ display: "flex", alignItems: "center", gap: 20, fontSize: 30, fontWeight: 700, letterSpacing: 8 }}><div style={{ width: 58, height: 58, border: "3px solid #7c6bf6", display: "flex", alignItems: "center", justifyContent: "center", color: "#4cc9f0" }}>P</div>PAK LABS</div><div style={{ maxWidth: 980, fontSize: 68, lineHeight: 1.08, fontWeight: 650 }}>Building AI-native products for memory, creativity, play, intelligence, and operations.</div><div style={{ display: "flex", gap: 36, fontSize: 24, color: "#a7a7bd" }}><span>Nomi</span><span>Holobots</span><span>AlphaLabs</span><span>Cadence</span><span>PakOS</span></div></div>, size); }

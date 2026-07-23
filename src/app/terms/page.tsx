@@ -1,0 +1,4 @@
+import type { Metadata } from "next";
+import SiteShell from "@/components/SiteShell";
+export const metadata: Metadata = { title: "Terms", alternates: { canonical: "/terms" } };
+export default function TermsPage() { return <SiteShell><article className="legal-page shell"><h1>Terms</h1><p>This website provides general information about Pak Labs and products in various stages of development. Product descriptions, roadmaps, and statuses may change without notice.</p><h2>No financial advice</h2><p>AlphaLabs is research and paper-trading infrastructure. Nothing on this site is investment, legal, tax, or financial advice.</p><h2>Availability</h2><p>A product page does not imply public release, App Store approval, Google Play availability, or a guaranteed launch date. Current status labels are intentionally conservative.</p><p className="legal-note">Last updated July 22, 2026.</p></article></SiteShell>; }
