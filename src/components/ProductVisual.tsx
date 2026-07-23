@@ -1,13 +1,10 @@
+import Image from "next/image";
 import type { Product } from "@/lib/products";
 
-export default function ProductVisual({ product, compact = false }: { product: Pick<Product, "name" | "slug" | "accent">; compact?: boolean }) {
+export default function ProductVisual({ product, compact = false }: { product: Pick<Product, "name" | "artwork">; compact?: boolean }) {
   return (
-    <div className={`product-visual accent-${product.accent} ${compact ? "compact" : ""}`} aria-hidden="true">
-      <span className="visual-grid" />
-      <span className="visual-orbit orbit-one" />
-      <span className="visual-orbit orbit-two" />
-      <span className="visual-core">{product.name.slice(0, 1)}</span>
-      <span className="visual-label">{product.slug}</span>
+    <div className={`product-visual ${compact ? "compact" : ""}`}>
+      <Image src={product.artwork} alt={`${product.name} product artwork`} fill sizes={compact ? "180px" : "(max-width: 700px) 100vw, 520px"} className="product-artwork" />
     </div>
   );
 }

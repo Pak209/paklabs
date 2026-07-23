@@ -19,6 +19,7 @@ export type Product = {
   capabilities: string[];
   privacy: string;
   accent: "violet" | "cyan" | "blue" | "magenta" | "indigo";
+  artwork: string;
   publicUrl?: string;
   githubRepo?: string;
   featured: boolean;
@@ -38,6 +39,7 @@ export const products = [
     capabilities: ["Personal memory capture", "Hybrid retrieval", "Ask Nomi", "Connected ideas", "Projects", "Daily briefs"],
     privacy: "Designed around private knowledge organization and deliberate control of personal context.",
     accent: "cyan",
+    artwork: "/images/products/nomi.png",
     featured: true,
     displayOrder: 1,
   },
@@ -53,6 +55,7 @@ export const products = [
     capabilities: ["Sync Circuit web demo", "Arena and progression systems", "Fitness synchronization", "HoloCity", "HoloZones", "AI-assisted game production"],
     privacy: "Public experiences are separated from private development and operational systems.",
     accent: "violet",
+    artwork: "/images/products/holobots.png",
     publicUrl: "https://www.holobots.fun/",
     githubRepo: "holobots-fun",
     featured: true,
@@ -70,6 +73,7 @@ export const products = [
     capabilities: ["Market data collection", "Catalyst and signal analysis", "Strategy evaluation", "Paper trading", "Structured decision support"],
     privacy: "AlphaLabs is presented as research and paper-trading infrastructure, not production investment advice or live autonomous trading.",
     accent: "blue",
+    artwork: "/images/products/alphalabs.png",
     githubRepo: "AlphaLabs",
     featured: true,
     displayOrder: 3,
@@ -86,6 +90,7 @@ export const products = [
     capabilities: ["Musical analysis", "Bass creation", "MIDI generation", "Creative iteration", "DAW workflow support"],
     privacy: "Creative material remains under the user’s direction; product availability and DAW integrations are not claimed until verified.",
     accent: "magenta",
+    artwork: "/images/products/cadence.png",
     githubRepo: "Cadence",
     featured: true,
     displayOrder: 4,
@@ -102,6 +107,7 @@ export const products = [
     capabilities: ["Project and action tracking", "Agent coordination", "Human approvals", "Workflow orchestration", "Development infrastructure"],
     privacy: "PakOS is an internal system. Private dashboards, credentials, and infrastructure details are not published.",
     accent: "indigo",
+    artwork: "/images/products/pakos.png",
     featured: true,
     displayOrder: 5,
   },

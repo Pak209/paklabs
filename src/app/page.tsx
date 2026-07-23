@@ -1,29 +1,30 @@
 import Link from "next/link";
+import {
+  ArrowRight, Brain, Briefcase, ChartLineUp, Cloud, Code, Devices,
+  EnvelopeSimple, FileCode, GameController, GraduationCap, Handshake,
+  MapPin, Microphone, Network, Package, PuzzlePiece, RocketLaunch,
+  ShieldCheck, Sparkle, User, UsersThree, Wrench,
+} from "@phosphor-icons/react/dist/ssr";
 import SiteShell from "@/components/SiteShell";
 import ProductStatus from "@/components/ProductStatus";
 import ProductVisual from "@/components/ProductVisual";
-import InquiryForm from "@/components/InquiryForm";
+import SystemsOrbit from "@/components/SystemsOrbit";
+import { LogoMark } from "@/components/Icons";
 import { products } from "@/lib/products";
 
 const buildPrinciples = [
-  ["AI-first engineering", "Start with intelligence, then engineer the surrounding system."],
-  ["Human direction", "People define the goals, guardrails, judgment, and final calls."],
-  ["Prototype, then harden", "Move quickly to learn; test and observe before relying on it."],
-  ["Privacy-conscious design", "Minimize data, preserve control, and separate public from private systems."],
-  ["Local + cloud AI", "Use the right execution environment for privacy, latency, and scale."],
-  ["Cross-platform delivery", "Ship across mobile, web, desktop, and game environments."],
+  [Brain, "AI-first engineering", "Start with intelligence and build reliable systems around it."],
+  [User, "Human direction", "People define goals, guardrails, judgment, and final calls."],
+  [RocketLaunch, "Prototype, then harden", "Move quickly to learn; engineer carefully before relying on it."],
+  [ShieldCheck, "Privacy-conscious design", "Minimize data, preserve control, and separate private systems."],
+  [ChartLineUp, "Testing and observability", "Measure behavior, quality, reliability, and performance."],
+  [Cloud, "Local and cloud AI", "Use the right model and environment for each product need."],
 ] as const;
 
+const tech = ["TypeScript", "Next.js", "React", "Tailwind CSS", "Python", "Swift / SwiftUI", "Unity", "Firebase", "OpenAI API", "Anthropic", "Vercel", "Cloudflare"];
+
 export default function Home() {
-  const organizationSchema = {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    name: "Pak Labs",
-    url: "https://pak-labs.com",
-    location: { "@type": "Place", name: "California, United States" },
-    sameAs: ["https://github.com/Pak209", "https://x.com/pak209eth"],
-    description: "Founder-led AI-native product company building connected software systems.",
-  };
+  const organizationSchema = { "@context": "https://schema.org", "@type": "Organization", name: "Pak Labs", url: "https://pak-labs.com", location: { "@type": "Place", name: "California, United States" }, sameAs: ["https://github.com/Pak209", "https://x.com/pak209eth"], description: "Founder-led AI-native product company building connected software systems." };
 
   return (
     <SiteShell>
@@ -32,50 +33,36 @@ export default function Home() {
         <div className="hero-copy">
           <h1>Building AI-native products for memory, creativity, play, intelligence, and operations.</h1>
           <p>Pak Labs is a founder-led product company creating connected software systems that turn ambitious ideas into useful, shippable products.</p>
-          <div className="button-row">
-            <Link className="button primary" href="/products">Explore Products <span>→</span></Link>
-            <Link className="button secondary" href="/how-we-build">How We Build <span>→</span></Link>
-            <Link className="text-link" href="/company">Company Overview <span>→</span></Link>
-          </div>
+          <div className="button-row"><Link className="button primary" href="/products">Explore Products <ArrowRight weight="bold" /></Link><Link className="button secondary" href="/how-we-build">How We Build <ArrowRight weight="bold" /></Link><Link className="text-link" href="/company">Company Overview <ArrowRight /></Link></div>
         </div>
-        <div className="system-map" aria-label="Five Pak Labs products connected through one operating philosophy">
-          <div className="map-rings" /><div className="map-core">P</div>
-          {products.map((product, index) => <Link href={`/products/${product.slug}`} key={product.slug} className={`map-node node-${index + 1}`}><strong>{product.name}</strong><span>{product.category.split(" · ")[0]}</span></Link>)}
+        <SystemsOrbit />
+      </section>
+
+      <section className="proof-rail" aria-label="Company summary"><div className="shell proof-grid"><span><UsersThree />Founder-led</span><span><Network />AI-native product portfolio</span><span><Devices />iOS + Web + macOS + Unity</span><span><MapPin />California</span></div></section>
+
+      <section className="section shell flagship-section" id="products">
+        <div className="section-kicker"><span>Our flagship products</span><i /></div>
+        <div className="flagship-grid">
+          {products.map((product) => <article key={product.slug} className="flagship-product"><ProductVisual product={product} /><h2>{product.name}</h2><p className="flagship-category">{product.category}</p><ProductStatus status={product.status} /><p>{product.shortDescription}</p><Link href={`/products/${product.slug}`} aria-label={`Explore ${product.name}`}>Explore <ArrowRight /></Link></article>)}
         </div>
       </section>
 
-      <section className="proof-rail" aria-label="Company summary"><div className="shell proof-grid"><span>Founder-led</span><span>AI-native product portfolio</span><span>iOS + Web + macOS + Unity</span><span>California</span></div></section>
-
-      <section className="section shell" id="products">
-        <div className="section-heading"><p className="section-label">Flagship products</p><h2>Five products. One company.</h2><p>Different domains, connected by one approach to building useful software with AI.</p></div>
-        <div className="product-list">
-          {products.map((product) => (
-            <article className="product-row" key={product.slug}>
-              <ProductVisual product={product} compact />
-              <div><p className="product-category">{product.category}</p><h3>{product.name}</h3><p>{product.shortDescription}</p></div>
-              <div className="product-meta"><ProductStatus status={product.status} /><span>{product.platforms.join(" · ")}</span><Link href={`/products/${product.slug}`}>View product <span>→</span></Link></div>
-            </article>
-          ))}
-        </div>
+      <section className="section shell operating-section">
+        <div className="operating-copy"><h2>Five products.<br />One operating<br />philosophy.</h2><p>Our products share an architecture and a set of principles that turn intelligence into reliable, useful systems.</p><Link className="text-link" href="/how-we-build">Explore the philosophy <ArrowRight /></Link></div>
+        <div className="operating-map"><div className="operating-core"><LogoMark /></div><div className="operating-left"><span><User />Personal AI and retrieval</span><span><Network />Agentic workflows</span><span><Wrench />Automation</span></div><div className="operating-right"><span><Devices />Cross-platform applications</span><span><GameController />Game systems</span><span><ShieldCheck />Responsible cloud/local AI</span></div><div className="operating-bottom"><User />Human-directed execution</div></div>
       </section>
 
-      <section className="section band">
-        <div className="shell split-section">
-          <div><p className="section-label">Connected systems</p><h2>Five products. One operating philosophy.</h2><p>Pak Labs explores multiple domains through a shared foundation: personal AI and retrieval, agentic workflows, automation, cross-platform applications, game systems, responsible cloud and local AI, and human-directed execution.</p><Link className="text-link" href="/how-we-build">Explore the philosophy <span>→</span></Link></div>
-          <div className="principle-network">{["Personal AI + retrieval", "Agentic workflows", "Automation", "Cross-platform apps", "Game systems", "Responsible AI", "Human-directed execution"].map((item) => <span key={item}>{item}</span>)}</div>
-        </div>
-      </section>
+      <section className="section shell mission"><div className="mission-graphic"><Package /></div><div><h2>AI should become useful systems.</h2><p>We build connected products that remember, reason, create, and act—so people can focus on what matters. Intelligence should respect privacy, run where it makes sense, and earn trust through reliability.</p></div></section>
 
-      <section className="section shell mission"><div className="mission-mark">P</div><div><h2>AI should become useful systems.</h2><p>AI should not live only inside a chat window. Pak Labs builds products that help people remember, create, improve, explore, and act—while keeping human direction, privacy, and reliable engineering in the loop.</p></div></section>
+      <section className="section shell build-section"><div className="build-principles"><h2>How We Build</h2>{buildPrinciples.map(([Icon, title, body]) => <article key={title}><Icon /><strong>{title}</strong><p>{body}</p></article>)}</div><div className="build-stack"><h2>Built with</h2><div className="tech-grid">{tech.map((item) => <span key={item}><Code />{item}</span>)}</div></div></section>
 
-      <section className="section shell" id="build"><div className="section-heading"><p className="section-label">How we build</p><h2>AI-first engineering. Human judgment.</h2></div><div className="principles-grid">{buildPrinciples.map(([title, body]) => <article key={title}><h3>{title}</h3><p>{body}</p></article>)}</div><div className="built-with"><span>Built with</span><p>OpenAI · Anthropic · Codex · Firebase / Google Cloud · Cloudflare · GitHub · RevenueCat · Supabase · Vercel · Unity · React Native · Swift / SwiftUI · TypeScript · Python</p></div></section>
+      <section className="section shell founder-strip"><div className="founder-mark"><LogoMark /></div><div><h2>Founder-led. AI-accelerated. Built to ship.</h2><p>Pak Labs is founded and led by one builder. AI expands the operation’s research, engineering, design, and testing capacity—while product judgment and accountability remain human.</p></div><div className="founder-lines"><SystemsOrbit /></div></section>
 
-      <section className="section band"><div className="shell founder"><div className="founder-monogram">P</div><div><p className="section-label">Operating model</p><h2>Founder-led. AI-accelerated. Built to ship.</h2><p>Pak Labs uses modern AI engineering systems to help one founder research, design, implement, test, and operate multiple products efficiently. AI provides leverage; product direction, standards, and accountability remain human.</p></div></div></section>
+      <section className="section shell now-building"><h2>Now Building</h2><div className="now-grid"><article><RocketLaunch /><div><strong>Shipped</strong><p>Core infrastructure<br />Public Holobots experience</p></div></article><article><ShieldCheck /><div><strong>In testing</strong><p>Product workflows<br />Quality and reliability</p></div></article><article><Wrench /><div><strong>Building now</strong><p>Product features<br />Agent capabilities</p></div></article><article><Sparkle /><div><strong>Exploring next</strong><p>New product ideas<br />Platform extensions</p></div></article></div></section>
 
-      <section className="section shell"><div className="section-heading"><p className="section-label">Now building</p><h2>Focused on shipping and hardening.</h2></div><div className="roadmap"><article><span>Shipped</span><h3>Holobots web experience</h3><p>A playable public expression of the broader game universe.</p></article><article><span>In testing</span><h3>Product workflows</h3><p>Quality, reliability, and end-to-end experience across active builds.</p></article><article><span>Building now</span><h3>Nomi, Cadence, AlphaLabs</h3><p>Core product capabilities and the infrastructure that supports them.</p></article><article><span>Exploring next</span><h3>HoloCity and HoloZones</h3><p>New places for the Holobots universe to grow.</p></article></div></section>
+      <section className="section shell updates-strip"><div><h2>Updates / Build Log</h2><p>Lightweight updates on what we’re building, learning, and shipping. No noise—just substance.</p><Link className="text-link" href="/updates">View all updates <ArrowRight /></Link></div><div className="update-placeholders"><span><FileCode /></span><span><Code /></span><span><Package /></span></div></section>
 
-      <section className="section band"><div className="shell updates-preview"><div><p className="section-label">Updates / Build log</p><h2>Work in public, without inventing the story.</h2><p>The build log is ready for verified product notes, launch lessons, and technical decisions. Entries will appear as real work is documented.</p></div><Link className="button secondary" href="/updates">View Updates <span>→</span></Link></div></section>
-      <InquiryForm />
+      <section className="section shell closing-strip" id="contact"><div><h2>Build what<br />comes next.</h2><p>Whether you’re exploring a partnership, a program, a collaboration, or just want to say hello—we’d love to hear from you.</p></div><div className="contact-options"><a href="mailto:dankimoto8@gmail.com?subject=Partnership"><Handshake /><span>Partnerships</span><ArrowRight /></a><a href="mailto:dankimoto8@gmail.com?subject=Program inquiry"><GraduationCap /><span>Program inquiries</span><ArrowRight /></a><a href="mailto:dankimoto8@gmail.com?subject=Collaboration"><PuzzlePiece /><span>Collaborations</span><ArrowRight /></a><a href="mailto:dankimoto8@gmail.com?subject=Press"><Microphone /><span>Press</span><ArrowRight /></a><a href="mailto:dankimoto8@gmail.com?subject=General inquiry"><EnvelopeSimple /><span>General inquiries</span><ArrowRight /></a><a className="consulting-option" href="mailto:dankimoto8@gmail.com?subject=Consulting"><Briefcase /><span>Consulting<small>Invitation access</small></span><ArrowRight /></a></div></section>
     </SiteShell>
   );
 }
